@@ -54,9 +54,9 @@
       <form id="entry-form">
         <div class="form-grid">
           <label>Date<input id="entry-date" type="date" required></label>
-          <label class="shift-field">Start odometer<input id="start-odo" type="number" inputmode="decimal" step="any" min="0" required></label>
-          <label class="shift-field">End odometer<input id="end-odo" type="number" inputmode="decimal" step="any" min="0" required></label>
-          <label class="trip-field hidden">Distance (<span class="unit-label">miles</span>)<input id="trip-miles" type="number" inputmode="decimal" step="any" min="0.01"></label>
+          <label class="shift-field"><span>Start odometer (<span class="unit-label">miles</span>)</span><input id="start-odo" type="text" inputmode="decimal" pattern="[0-9., ]+" required><span class="input-hint">Use . or , for decimals</span></label>
+          <label class="shift-field"><span>End odometer (<span class="unit-label">miles</span>)</span><input id="end-odo" type="text" inputmode="decimal" pattern="[0-9., ]+" required><span class="input-hint">Use . or , for decimals</span></label>
+          <label class="trip-field hidden"><span>Distance (<span class="unit-label">miles</span>)</span><input id="trip-miles" type="text" inputmode="decimal" pattern="[0-9., ]+"><span class="input-hint">Use . or , for decimals</span></label>
           <label>Purpose<select id="purpose"><option>Delivery</option><option>Rideshare</option><option>Client visit</option><option>Other</option></select></label>
           <label class="wide">Note <span class="optional">optional</span><input id="note" type="text" maxlength="180"></label>
         </div>
@@ -120,7 +120,7 @@
       <details><summary>Who made this?</summary><p>Derezar Master, London. Feedback: <a href="https://github.com/dman3629/openmileage/issues">GitHub issues</a>.</p></details>
     </section>
   </main>
-  <footer><div class="wrap"><a href="https://github.com/dman3629/openmileage">GitHub repository</a><p>No cookies; an anonymous page-view count and anonymous button counts, nothing personal unless you back up.</p><small id="build-id">build 2026-11-06c</small></div></footer>
+  <footer><div class="wrap"><a href="https://github.com/dman3629/openmileage">GitHub repository</a><p>No cookies; an anonymous page-view count and anonymous button counts, nothing personal unless you back up.</p><small id="build-id">build 2026-11-06d</small></div></footer>
   <script src="app.js"></script>
 </body>
 </html>
