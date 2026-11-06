@@ -3,8 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="A free, private mileage log for drivers. No app, no cap, no account.">
-  <title>OpenMileage — free mileage log</title>
+  <title>OpenMileage – free mileage log, no app, no cap, no account</title>
+  <meta name="description" content="Free mileage log for gig drivers. Type your odometer, get a tax-ready log and CSV. No app, no cap, no account. Your data stays on your phone.">
+  <link rel="canonical" href="https://dman3629.github.io/openmileage/">
+  <meta name="theme-color" content="#0f6e56">
+  <meta property="og:title" content="OpenMileage – free mileage log, no app, no cap, no account">
+  <meta property="og:description" content="Free mileage log for gig drivers. Type your odometer, get a tax-ready log and CSV. No app, no cap, no account. Your data stays on your phone.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dman3629.github.io/openmileage/">
+  <meta property="og:image" content="https://dman3629.github.io/openmileage/docs/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OpenMileage – free mileage log, no app, no cap, no account">
+  <meta name="twitter:description" content="Free mileage log for gig drivers. Type your odometer, get a tax-ready log and CSV. No app, no cap, no account. Your data stays on your phone.">
+  <meta name="twitter:image" content="https://dman3629.github.io/openmileage/docs/og.png">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -20,13 +33,19 @@
       <p class="muted">Built because the free tiers lock your trips after 30 and the auto-trackers miss miles.</p>
     </section>
 
-    <section class="settings card" aria-labelledby="settings-title">
-      <h2 id="settings-title">Your settings</h2>
-      <div class="settings-grid">
-        <label>Region<select id="region"><option value="UK">UK</option><option value="US">US</option></select></label>
-        <label>Units<select id="units"><option value="miles">miles</option><option value="km">km</option></select></label>
-        <label class="vehicle-label">Vehicle name<input id="vehicle" type="text" value="My car"></label>
+    <section class="settings-strip" aria-labelledby="settings-title">
+      <h2 id="settings-title">Settings</h2>
+      <div class="compact-setting">
+        <span class="setting-label">Region</span>
+        <select id="region" class="visually-hidden" tabindex="-1" aria-hidden="true"><option value="UK">UK</option><option value="US">US</option></select>
+        <div class="pill-group" role="group" aria-label="Region"><button type="button" data-select="region" data-value="UK" aria-pressed="false">UK</button><button type="button" data-select="region" data-value="US" aria-pressed="false">US</button></div>
       </div>
+      <div class="compact-setting">
+        <span class="setting-label">Units</span>
+        <select id="units" class="visually-hidden" tabindex="-1" aria-hidden="true"><option value="miles">miles</option><option value="km">km</option></select>
+        <div class="pill-group" role="group" aria-label="Units"><button type="button" data-select="units" data-value="miles" aria-pressed="false">Miles</button><button type="button" data-select="units" data-value="km" aria-pressed="false">Km</button></div>
+      </div>
+      <label class="vehicle-label">Vehicle name<input id="vehicle" type="text" value="My car"></label>
       <p class="tax-year">Tax year: <strong id="tax-year-label"></strong></p>
     </section>
 
@@ -49,11 +68,15 @@
 
     <section class="card totals-card" aria-labelledby="totals-title">
       <h2 id="totals-title">Totals</h2>
-      <div class="totals-grid">
-        <div><span>Today</span><strong id="total-today">0</strong></div><div><span>This week</span><strong id="total-week">0</strong></div>
-        <div><span>This month</span><strong id="total-month">0</strong></div><div><span>This tax year</span><strong id="total-year">0</strong></div>
+      <div class="primary-totals">
+        <div><span>This tax year</span><strong id="total-year">0</strong></div>
+        <div><span>Tax-year allowance</span><strong id="deduction-value">$0.00</strong></div>
       </div>
-      <div class="value-line"><span>Tax-year allowance</span><strong id="deduction-value">$0.00</strong></div>
+      <div class="totals-grid">
+        <div><span>Today</span><strong id="total-today">0</strong></div>
+        <div><span>This week</span><strong id="total-week">0</strong></div>
+        <div><span>This month</span><strong id="total-month">0</strong></div>
+      </div>
       <p id="rate-line" class="muted"></p>
       <p><a id="rate-source" target="_blank" rel="noopener">Source</a></p>
       <p class="fine">Rates are the published standard rates; check your own situation.</p>
