@@ -67,9 +67,9 @@
     </section>
 
     <section class="card totals-card" aria-labelledby="totals-title">
-      <h2 id="totals-title">Totals</h2>
+      <div class="section-head"><h2 id="totals-title">Totals</h2><label class="year-picker">Tax year<select id="tax-year-select"></select></label></div>
       <div class="primary-totals">
-        <div><span>This tax year</span><strong id="total-year">0</strong></div>
+        <div><span id="total-year-caption">This tax year</span><strong id="total-year">0</strong></div>
         <div><span>Tax-year allowance</span><strong id="deduction-value">$0.00</strong></div>
       </div>
       <div class="totals-grid">
@@ -85,7 +85,7 @@
     <section class="card" aria-labelledby="log-title">
       <div class="section-head"><h2 id="log-title">Mileage log</h2><span id="entry-count" class="count">0 entries</span></div>
       <label class="filter">Filter by month<input id="month-filter" type="month"></label>
-      <div class="table-scroll"><table><thead><tr><th>Date</th><th>Start</th><th>End</th><th>Miles</th><th>Purpose</th><th>Note</th><th class="actions">Actions</th></tr></thead><tbody id="log-body"></tbody></table></div>
+      <div class="table-scroll"><table><thead><tr><th>Date</th><th>Start</th><th>End</th><th id="distance-heading">Miles</th><th>Purpose</th><th>Note</th><th class="actions">Actions</th></tr></thead><tbody id="log-body"></tbody></table></div>
       <p id="empty-log" class="empty">No mileage yet. Add your first shift above.</p>
     </section>
 
@@ -101,11 +101,11 @@
 
     <section class="card" aria-labelledby="backup-title">
       <h2 id="backup-title">Back up to the cloud</h2>
-      <p>Email plus a code. No password. We only email you if you ask for the yearly summary.</p>
+      <p>Email plus a code. No password. Your email is stored with your backup so you can restore it. We only send you anything if you tick the box.</p>
       <label>Email<input id="backup-email" type="email" autocomplete="email" placeholder="you@example.com"></label>
       <label class="check"><input id="yearly-summary" type="checkbox"> Email me a yearly summary</label>
-      <label id="code-label" class="hidden">Restore code<input id="restore-code" type="text" maxlength="10" autocomplete="off"></label>
-      <div class="button-row"><button id="backup-button" type="button" class="primary">Back up</button><button id="restore-button" type="button" class="hidden">Restore</button></div>
+      <label id="code-label">Restore code<input id="restore-code" type="text" maxlength="10" autocomplete="off"></label>
+      <div class="button-row"><button id="backup-button" type="button" class="primary">Back up</button><button id="restore-button" type="button">Restore</button></div>
       <div id="backup-result" class="backup-result" role="status"></div>
     </section>
 
@@ -120,7 +120,7 @@
       <details><summary>Who made this?</summary><p>Derezar Master, London. Feedback: <a href="https://github.com/dman3629/openmileage/issues">GitHub issues</a>.</p></details>
     </section>
   </main>
-  <footer><div class="wrap"><a href="https://github.com/dman3629/openmileage">GitHub repository</a><p>No cookies; an anonymous page-view count and anonymous button counts, nothing personal unless you back up.</p></div></footer>
+  <footer><div class="wrap"><a href="https://github.com/dman3629/openmileage">GitHub repository</a><p>No cookies; an anonymous page-view count and anonymous button counts, nothing personal unless you back up.</p><small id="build-id">build 2026-11-06c</small></div></footer>
   <script src="app.js"></script>
 </body>
 </html>

@@ -63,6 +63,8 @@ button:disabled { cursor: not-allowed; opacity: .56; }
 .totals-grid div + div { padding-left: var(--s2); border-left: 1px solid var(--line); }
 .totals-grid strong { margin-top: 4px; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
 .filter { max-width: 216px; margin-bottom: var(--s2); }
+.year-picker { min-width: 132px; }
+.year-picker select { min-height: 44px; padding-block: 4px; }
 .table-scroll { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
 table { width: 100%; border-collapse: collapse; font-size: .875rem; white-space: nowrap; }
 th, td { padding: var(--s1) var(--s2); border-bottom: 1px solid var(--line); text-align: left; }
@@ -107,6 +109,21 @@ footer { padding: var(--s3) 0 var(--s5); border-top: 1px solid var(--line); colo
   .totals-grid { grid-template-columns: 1fr; }
   .totals-grid div + div { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
   .button-row > * { flex: 1; }
+  .table-scroll { overflow: visible; border: 0; }
+  table, tbody { display: block; }
+  thead { display: none; }
+  tbody tr { display: grid; grid-template-columns: 1fr 1fr; gap: 6px var(--s2); margin-bottom: var(--s2); padding: var(--s2); border: 1px solid var(--line); border-radius: 8px; }
+  tbody td { display: block; min-width: 0; padding: 0; border: 0; white-space: normal; overflow-wrap: anywhere; }
+  tbody td::before { display: block; color: var(--muted); content: attr(data-label); font-size: .75rem; font-weight: 700; text-transform: capitalize; }
+  tbody td:first-child, tbody td:nth-child(4), tbody td:nth-child(5), tbody td:nth-child(6), tbody td.actions { grid-column: 1 / -1; }
+  tbody td:first-child { display: inline; grid-column: 1; }
+  tbody td:nth-child(4) { display: inline; grid-column: 2; text-align: right; }
+  tbody td:first-child::before, tbody td:nth-child(4)::before, tbody td.actions::before { display: none; }
+  .mobile-primary { font-size: 1rem; }
+  .row-actions button { flex: 1; }
+  .editing { grid-template-columns: 1fr !important; }
+  .editing td { grid-column: 1 / -1 !important; }
+  .editing td::before { display: none; }
 }
 @media (prefers-color-scheme: dark) {
   :root { --bg: #111815; --card: #18211e; --text: #edf5f1; --muted: #abb9b3; --line: #35423d; --accent: #65d9b5; --accent-hover: #79e4c2; --danger: #ff8585; }
@@ -129,5 +146,6 @@ footer { padding: var(--s3) 0 var(--s5); border-top: 1px solid var(--line); colo
   table { font-size: 9pt; white-space: normal; }
   th, td { border: 1px solid #bbb; }
   main::before { display: block; margin-bottom: var(--s1); content: "OpenMileage mileage report"; font-size: 20pt; font-weight: 800; }
+  body::before { display: block; margin-bottom: var(--s2); content: attr(data-print-title); font-size: 11pt; }
   main::after { display: block; margin-top: 40px; content: "Signature: ______________________________     Date: ______________"; font-size: 11pt; }
 }
