@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A free, private mileage log for drivers. No app, no cap, no account.">
+  <title>OpenMileage — free mileage log</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="wordmark" href="#top">OpenMileage</a>
+    <span>Free mileage records, kept by you.</span>
+  </header>
+  <main id="top" class="wrap">
+    <section class="hero">
+      <h1>Mileage log. No app. No cap. No account.</h1>
+      <p class="lead">Type your odometer at the start and end of a shift. Get a tax-ready log you can download any time. It lives on your phone, not on our servers, unless you choose to back it up.</p>
+      <p class="muted">Built because the free tiers lock your trips after 30 and the auto-trackers miss miles.</p>
+    </section>
+
+    <section class="settings card" aria-labelledby="settings-title">
+      <h2 id="settings-title">Your settings</h2>
+      <div class="settings-grid">
+        <label>Region<select id="region"><option value="UK">UK</option><option value="US">US</option></select></label>
+        <label>Units<select id="units"><option value="miles">miles</option><option value="km">km</option></select></label>
+        <label class="vehicle-label">Vehicle name<input id="vehicle" type="text" value="My car"></label>
+      </div>
+      <p class="tax-year">Tax year: <strong id="tax-year-label"></strong></p>
+    </section>
+
+    <section class="card entry-card" aria-labelledby="entry-title">
+      <div class="section-head"><h2 id="entry-title">Add mileage</h2><div class="segmented" role="group" aria-label="Entry mode"><button type="button" class="active" data-mode="shift">Shift</button><button type="button" data-mode="trip">Trip</button></div></div>
+      <form id="entry-form">
+        <div class="form-grid">
+          <label>Date<input id="entry-date" type="date" required></label>
+          <label class="shift-field">Start odometer<input id="start-odo" type="number" inputmode="decimal" step="any" min="0" required></label>
+          <label class="shift-field">End odometer<input id="end-odo" type="number" inputmode="decimal" step="any" min="0" required></label>
+          <label class="trip-field hidden">Distance (<span class="unit-label">miles</span>)<input id="trip-miles" type="number" inputmode="decimal" step="any" min="0.01"></label>
+          <label>Purpose<select id="purpose"><option>Delivery</option><option>Rideshare</option><option>Client visit</option><option>Other</option></select></label>
+          <label class="wide">Note <span class="optional">optional</span><input id="note" type="text" maxlength="180"></label>
+        </div>
+        <p id="entry-error" class="error" role="alert"></p>
+        <button class="primary big" type="submit">Add</button>
+        <p id="confirmation" class="confirmation" role="status"></p>
+      </form>
+    </section>
+
+    <section class="card totals-card" aria-labelledby="totals-title">
+      <h2 id="totals-title">Totals</h2>
+      <div class="totals-grid">
+        <div><span>Today</span><strong id="total-today">0</strong></div><div><span>This week</span><strong id="total-week">0</strong></div>
+        <div><span>This month</span><strong id="total-month">0</strong></div><div><span>This tax year</span><strong id="total-year">0</strong></div>
+      </div>
+      <div class="value-line"><span>Tax-year allowance</span><strong id="deduction-value">$0.00</strong></div>
+      <p id="rate-line" class="muted"></p>
+      <p><a id="rate-source" target="_blank" rel="noopener">Source</a></p>
+      <p class="fine">Rates are the published standard rates; check your own situation.</p>
+    </section>
+
+    <section class="card" aria-labelledby="log-title">
+      <div class="section-head"><h2 id="log-title">Mileage log</h2><span id="entry-count" class="count">0 entries</span></div>
+      <label class="filter">Filter by month<input id="month-filter" type="month"></label>
+      <div class="table-scroll"><table><thead><tr><th>Date</th><th>Start</th><th>End</th><th>Miles</th><th>Purpose</th><th>Note</th><th class="actions">Actions</th></tr></thead><tbody id="log-body"></tbody></table></div>
+      <p id="empty-log" class="empty">No mileage yet. Add your first shift above.</p>
+    </section>
+
+    <section class="card" aria-labelledby="export-title">
+      <h2 id="export-title">Export or import</h2>
+      <label>Export period<select id="export-period"><option value="year">This tax year</option><option value="all">All entries</option></select></label>
+      <div class="button-row"><button id="download-csv" type="button">Download CSV</button><button id="print-report" type="button">Print / PDF</button></div>
+      <hr>
+      <label>Import CSV<input id="csv-file" type="file" accept=".csv,text/csv"></label>
+      <div id="import-preview" class="import-preview hidden"><p id="import-summary"></p><button id="confirm-import" type="button" class="primary">Import entries</button></div>
+      <p id="import-status" role="status"></p>
+    </section>
+
+    <section class="card" aria-labelledby="backup-title">
+      <h2 id="backup-title">Back up to the cloud</h2>
+      <p>Email plus a code. No password. We only email you if you ask for the yearly summary.</p>
+      <label>Email<input id="backup-email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+      <label class="check"><input id="yearly-summary" type="checkbox"> Email me a yearly summary</label>
+      <label id="code-label" class="hidden">Restore code<input id="restore-code" type="text" maxlength="10" autocomplete="off"></label>
+      <div class="button-row"><button id="backup-button" type="button" class="primary">Back up</button><button id="restore-button" type="button" class="hidden">Restore</button></div>
+      <div id="backup-result" class="backup-result" role="status"></div>
+    </section>
+
+    <section id="pro-card" class="card hidden"><h2>OpenMileage Pro</h2><p>Signed PDF report, unlimited vehicles, priority backups. $4.99 once.</p><a id="pro-link" class="button primary" href="#">Get Pro</a></section>
+
+    <section class="faq" aria-labelledby="faq-title"><h2 id="faq-title">Questions</h2>
+      <details><summary>Is it free?</summary><p>Yes. Log, CSV and print export stay free. Pro adds extras.</p></details>
+      <details><summary>Where is my data?</summary><p>In your browser. Clear your browser data and it is gone unless you backed it up.</p></details>
+      <details><summary>What do HMRC and the IRS want in a log?</summary><p>Date, miles, purpose; odometer readings help. This log records all of them.</p></details>
+      <details><summary>Can I move from Everlance, Driversnote, Stride or MileIQ?</summary><p>Export a CSV from them and use Import.</p></details>
+      <details><summary>Is it open source?</summary><p>Yes: <a href="https://github.com/dman3629/openmileage">github.com/dman3629/openmileage</a></p></details>
+      <details><summary>Who made this?</summary><p>Derezar Master, London. Feedback: <a href="https://github.com/dman3629/openmileage/issues">GitHub issues</a>.</p></details>
+    </section>
+  </main>
+  <footer><div class="wrap"><a href="https://github.com/dman3629/openmileage">GitHub repository</a><p>No cookies; an anonymous page-view count and anonymous button counts, nothing personal unless you back up.</p></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
